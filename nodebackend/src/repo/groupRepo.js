@@ -1,4 +1,6 @@
-var mysqlService = require("../services/mysqlsvc");
+var mysqlService = require("../services/mysqlsvc"),
+    utils = require("../utils")
+
 
 var create = async (req, res, next) => {
   res.status(201).send("Success");
@@ -11,18 +13,18 @@ var get = async (req, res, next) => {
     } else {
       var query = "select id, name from `group`";
       connection.query(query, function (err, result, fields) {
+        close();
         if (err) {
-          next(
+          return next(
             Object.assign(err, {
               friendlyMessage:
                 "An error has occurred while fetching groups. Please retry later.",
             })
           );
         }
-        res.status(200).send(result);
+        utils.handleSuccessResponse(res, result);
       });
     }
-    close();
   });
 };
 
