@@ -1,0 +1,60 @@
+version: "3.3"
+
+services:
+    mysqldb:
+        build:
+            context: ./mysqldb
+            dockerfile: Dockerfile
+        container_name: db
+        environment: 
+            MYSQL_ROOT_PASSWORD: Passw0rd
+            MYSQL_DATABASE: todos
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: Passw0rd
+            DATABASE_HOST: db
+    nodebackend:
+        build:
+            context: ./nodebackend
+            dockerfile: Dockerfile
+        #ports:
+        #- "4000:4000"
+        depends_on:
+            - mysqldb
+        volumes: 
+            - /app/node_modules
+        container_name: backend
+        environment: 
+            RDS_HOST: db
+            RDS_PORT: 3306
+            RDS_DB_NAME: todos
+            RDS_USERNAME: admin
+            RDS_PASSWORD: Passw0rd
+        #restart: on-faliure
+    reactweb:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+            #args: 
+            #    API_BASE_URL: localhost
+            #    API_BASE_PORT: 8081
+        depends_on:
+            - nodebackend
+        #ports:
+        #- "3000:3000"
+        volumes:
+            - /app/node_modules 
+        container_name: client
+        
+    proxy:
+        build:
+            dockerfile: Dockerfile
+            context: ./reverse_proxy
+        ports:
+            - '8081:80'
+        depends_on:
+            - nodebackend
+            - reactweb
+        restart: always
+        container_name: reverseproxy 
+
+
