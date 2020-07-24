@@ -9,7 +9,8 @@ var create = async (req, res, next) => {
 var get = async (req, res, next) => {
   mysqlService.connect((err, connection, close) => {
     if (err) {
-      res.status(500).send({ message: err.friendlyMessage });
+      //res.status(500).send({ message: err.friendlyMessage });
+      res.status(500).send(err);
     } else {
       var query = "select id, name from `group`";
       connection.query(query, function (err, result, fields) {
@@ -18,7 +19,7 @@ var get = async (req, res, next) => {
           return next(
             Object.assign(err, {
               friendlyMessage:
-                "An error has occurred while fetching groups. Please retry later.",
+                "An error has occurred while fetching groups. Please retry again later.",
             })
           );
         }

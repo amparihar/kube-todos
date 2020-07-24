@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: todos-db
+  labels:
+    tier: db
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: db
+  template:
+    metadata:
+      name: todos-db
+      labels:
+        tier: db
+    spec:
+      containers:
+        - name: todos-db-container
+          image: aparihar/todosdb:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: todos-mysql-connection-secret
+                  key: RDS_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: todos-mysql-connection-secret
+                  key: RDS_DB_NAME
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: todos-mysql-connection-secret
+                  key: RDS_USERNAME
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: todos-mysql-connection-secret
+                  key: RDS_PASSWORD
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: todos-mysql-connection-secret
+                  key: RDS_HOST
+

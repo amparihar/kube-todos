@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+
+metadata:
+  name: todos-ingress
+
+spec:
+  rules:
+    - host: mytodos.com
+      http:
+        paths:
+          #- path: /api
+          #  backend:
+          #    serviceName: todos-backend
+          #    servicePort: 8081
+          - path: /
+            backend:
+              serviceName: todos-frontend
+              servicePort: 3000

@@ -1,0 +1,4 @@
+bases:
+  - ../../app
+patches:
+  - ebs.yml

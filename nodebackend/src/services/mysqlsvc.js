@@ -10,13 +10,11 @@
 
   mysqlService.connect = function (cb) {
     connection.connect(function (err) {
+      console.log("connectionConfig =>>", connectionConfig);
       if (err) {
-        if (err instanceof Error){
-          console.log("connection error code =>>", err.code);
-        }
-        console.error("connecting error =>>", err.stack);
-        console.error("connection =>>", connection);
-        Object.assign(err, { friendlyMessage: "An error has occurred. Please retry later." });
+        console.log("connecting error =>>", err.stack);
+        console.log("connection =>>", connection);
+        Object.assign(err, { friendlyMessage: "An error has occurred. Please retry again later." });
       }
       return cb(err, connection, function () {
         connection.end();

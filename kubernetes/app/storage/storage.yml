@@ -1,0 +1,42 @@
+# What is being claimed?
+# in the below pvc, we are claiming a local-storage which is implemented as hostPath
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: todos-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Mi
+  #storageClassName: standard
+  storageClassName: local-storage
+
+---
+# How is the physical storage implemented
+# PV is a cluster resource, usually provisioned by the cluster admin
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: todos-host-pv
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Mi
+  persistentVolumeReclaimPolicy: Delete
+  hostPath:
+    type: DirectoryOrCreate
+    path: /mnt/host/local/store
+
+---
+# https://kubernetes.io/docs/concepts/storage/storage-classes
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: todos-aws-ebs
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2 # default, general purpose SSD drive

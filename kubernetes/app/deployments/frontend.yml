@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: todos-frontend
+  labels:
+    tier: client
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: client
+    #matchExpressions:
+    #  - {key: tier, operator: In, values: [client]}
+
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+
+  template:
+    metadata:
+      name: todos-frontend
+      labels:
+        tier: client
+    spec:
+      volumes:
+        - name: env-config-volume
+          configMap:
+            name: todos-frontend-env-config
+            items:
+              - key: env-config.js
+                path: env-config.js
+        - name: ngnix-api-gateway-volume
+          configMap:
+            name: todos-ngnix-api-gateway-config
+            items:
+              - key: default.conf
+                path: default.conf
+      containers:
+        - name: todos-frontend-container
+          image: aparihar/todosclient:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: env-config-volume
+              mountPath: /usr/share/nginx/html/env-config.js
+              subPath: env-config.js
+              readOnly: true
+            - name: ngnix-api-gateway-volume
+              mountPath: /etc/nginx/conf.d/
+              readOnly: true
+
+
+
+
+
+
