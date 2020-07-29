@@ -40,3 +40,5 @@ metadata:
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2 # default, general purpose SSD drive
+volumeBindingMode: WaitForFirstConsumer
+
