@@ -1,4 +1,5 @@
 # What is being claimed?
+# It is a request for storage by a user that can be fulfilled by a PV
 # in the below pvc, we are claiming a local-storage which is implemented as hostPath
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -15,7 +16,7 @@ spec:
 
 ---
 # How is the physical storage implemented
-# PV is a cluster resource, usually provisioned by the cluster admin
+# PV is a cluster resource, manually provisioned by the cluster admin
 apiVersion: v1
 kind: PersistentVolume
 metadata:
