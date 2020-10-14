@@ -1,14 +1,28 @@
-
 resources:
   - configMaps/frontend-env-config.yml
   - configMaps/ngnix-api-gateway-config.yml
   - secrets/db-secret.yml
-  - storage/storage.yml
+  #- storage/storage.yml
   - services/frontend.yml
   - services/backend.yml
-  #- services/db.yml
+  - services/db.yml
   - deployments/frontend.yml
   - deployments/backend.yml
-  #- deployments/db.yml
-  - statefulsets/db.yml
+  - deployments/db.yml
+  #- statefulsets/db.yml
   - ingress-rules.yml
+
+#statefulsets
+# resources:
+#   - configMaps/frontend-env-config.yml
+#   - configMaps/ngnix-api-gateway-config.yml
+#   - secrets/db-secret.yml
+#   - storage/storage.yml
+#   - services/frontend.yml
+#   - services/backend.yml
+#   #- services/db.yml
+#   - deployments/frontend.yml
+#   - deployments/backend.yml
+#   #- deployments/db.yml
+#   - statefulsets/db.yml
+#   - ingress-rules.yml
