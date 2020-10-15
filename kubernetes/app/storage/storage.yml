@@ -10,9 +10,9 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Mi
-  #storageClassName: standard
-  storageClassName: local-storage
+      storage: 4Gi
+  storageClassName: standard
+  #storageClassName: local-storage
 
 ---
 # How is the physical storage implemented

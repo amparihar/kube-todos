@@ -12,6 +12,8 @@ spec:
   selector:
     matchLabels:
       tier: db
+  strategy:
+    type: Recreate
   template:
     metadata:
       name: todos-db

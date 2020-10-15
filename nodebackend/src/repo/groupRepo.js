@@ -7,14 +7,14 @@ var create = async (req, res, next) => {
 };
 
 var get = async (req, res, next) => {
-  mysqlService.connect((err, connection, close) => {
+  mysqlService.lazyConnect((err, connection, release) => {
     if (err) {
       //res.status(500).send({ message: err.friendlyMessage });
       res.status(500).send(err);
     } else {
       var query = "select id, name from `group`";
       connection.query(query, function (err, result, fields) {
-        close();
+        release();
         if (err) {
           return next(
             Object.assign(err, {
