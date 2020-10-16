@@ -3,6 +3,7 @@ kind: Ingress
 
 metadata:
   name: todos-ingress
+  namespace: dev
 
 spec:
   rules:

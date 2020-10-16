@@ -5,6 +5,7 @@ metadata:
   name: todos-backend
   labels:
     tier: server
+  namespace: dev
 
 spec:
   replicas: 2

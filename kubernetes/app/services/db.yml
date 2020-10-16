@@ -5,6 +5,7 @@ metadata:
   name: todos-db
   labels:
     tier: dbSvc
+  namespace: dev
 
 spec:
   type: ClusterIP

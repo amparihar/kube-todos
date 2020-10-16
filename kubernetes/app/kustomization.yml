@@ -1,4 +1,5 @@
 resources:
+  - namespaces/dev.yml
   - configMaps/frontend-env-config.yml
   - configMaps/ngnix-api-gateway-config.yml
   - secrets/db-secret.yml
@@ -16,6 +17,7 @@ resources:
 
 #statefulsets
 # resources:
+#   - namespaces/dev.yml
 #   - configMaps/frontend-env-config.yml
 #   - configMaps/ngnix-api-gateway-config.yml
 #   - secrets/db-secret.yml

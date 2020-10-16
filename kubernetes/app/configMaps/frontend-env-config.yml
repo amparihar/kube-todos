@@ -3,6 +3,7 @@ kind: ConfigMap
 
 metadata:
   name: todos-frontend-env-config
+  namespace: dev
 
 data:
   env-config.js: |

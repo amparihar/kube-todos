@@ -5,6 +5,7 @@ metadata:
   name: todos-db
   labels:
     app: todos
+  namespace: dev
 spec:
   #clusterIP: None
   ports:
@@ -22,6 +23,7 @@ metadata:
   labels:
     app: todos
     tier: mysqldb
+  namespace: dev
 spec:
   serviceName: todos-db
   replicas: 2

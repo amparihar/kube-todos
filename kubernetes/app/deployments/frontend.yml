@@ -5,6 +5,7 @@ metadata:
   name: todos-frontend
   labels:
     tier: client
+  namespace: dev
 
 spec:
   replicas: 2
