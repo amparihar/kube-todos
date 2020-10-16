@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: default-http-app
+  labels:
+    tier: frontend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: default-http-app
+  
+  template:
+    metadata:
+      labels:
+        tier: default-http-app
+    spec:
+      containers:
+        - name: todos-db-container
+          image: aparihar/todosdefaulthttp:latest
+          ports:
+            - containerPort: 80
+          
+

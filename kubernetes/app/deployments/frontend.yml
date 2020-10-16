@@ -22,7 +22,7 @@ spec:
 
   template:
     metadata:
-      name: todos-frontend
+      #name: todos-frontend
       labels:
         tier: client
     spec:

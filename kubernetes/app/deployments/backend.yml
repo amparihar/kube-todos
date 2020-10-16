@@ -13,10 +13,14 @@ spec:
       tier: server
   template:
     metadata:
-      name: todos-backend
+      #name: todos-backend
       labels:
         tier: server
     spec:
+      initContainers:
+        - name: init-db
+          image: busybox:1.31
+          command: ['sh', '-c', 'echo -e "Checking for the availability of MySQL Server deployment"; while ! nc -z todos-db 3306; do sleep 1; printf "-"; done; echo -e "  >> MySQL DB Server has started";']
       containers:
         - name: todos-backend-container
           image: aparihar/todosserver:latest

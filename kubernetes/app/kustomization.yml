@@ -6,9 +6,11 @@ resources:
   - services/frontend.yml
   - services/backend.yml
   - services/db.yml
+  - services/routeNotFound.yml
   - deployments/frontend.yml
   - deployments/backend.yml
   - deployments/db.yml
+  - deployments/routeNotFound.yml
   #- statefulsets/db.yml
   - ingress-rules.yml
 
