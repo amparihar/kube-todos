@@ -5,7 +5,6 @@ metadata:
   name: todos-backend
   labels:
     tier: backendSvc
-  namespace: dev
 
 spec:
   #type: : ClusterIP

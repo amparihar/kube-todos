@@ -6,7 +6,6 @@ metadata:
   name: todos-db
   labels:
     tier: db
-  namespace: dev
 
 spec:
   replicas: 1

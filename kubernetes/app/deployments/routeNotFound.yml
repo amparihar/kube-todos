@@ -6,7 +6,6 @@ metadata:
   name: default-http-app
   labels:
     tier: frontend
-  namespace: dev
 
 spec:
   replicas: 1

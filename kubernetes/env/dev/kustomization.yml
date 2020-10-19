@@ -3,5 +3,5 @@ resources:
 bases:
   - ../../app
 
-#namePrefix: mylocal-
-namespace: mylocal
+#namePrefix: dev-
+namespace: dev

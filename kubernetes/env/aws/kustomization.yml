@@ -1,4 +1,9 @@
+resources:
+  - namespace.yml
 bases:
   - ../../app
 patches:
   - ebs.yml
+
+#namePrefix: staging-
+namespace: staging

@@ -3,7 +3,6 @@ kind: Service
 
 metadata:
   name: default-http-backend
-  namespace: dev
 
 spec:
   ports:

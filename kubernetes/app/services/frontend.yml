@@ -5,7 +5,6 @@ metadata:
   name: todos-frontend
   labels:
     tier: frontendSvc
-  namespace: dev
 
 spec:
   #type: NodePort
